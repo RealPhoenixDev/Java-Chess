@@ -93,7 +93,5 @@ public class UserControl {
 					move = 'B';
 				} else {move = 'W';}
 			}
-		
-	
 	}
 }

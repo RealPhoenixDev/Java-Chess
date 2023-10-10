@@ -9,10 +9,7 @@ import java.util.Arrays;
 
 public class ChessMain {
 	
-	 public interface pointer {
-		 public static void generateBoard() {}
-		 public static void generateThreats () {}
-	 }
+
 	
 	
 	public static String[][] chessBoard = new String[8][8];
@@ -41,7 +38,7 @@ public class ChessMain {
 		chessPieces.CreatePiece('N', 'B', 1, 0);
 		chessPieces.CreatePiece('B', 'B', 2, 0);
 		chessPieces.CreatePiece('Q', 'B', 3, 0);
-		chessPieces.CreatePiece('K', 'B', 4, 0);
+		chessPieces.CreatePiece('K', 'B', 3, 5);
 		chessPieces.CreatePiece('B', 'B', 5, 0);
 		chessPieces.CreatePiece('N', 'B', 6, 0);
 		chessPieces.CreatePiece('R', 'B', 7, 0);
@@ -49,7 +46,7 @@ public class ChessMain {
 			chessPieces.CreatePiece('P', 'B', p, 1);
 		
 		// White pieces generation
-		chessPieces.CreatePiece('R', 'W', 0, 7);
+		chessPieces.CreatePiece('R', 'W', 3, 3);
 		chessPieces.CreatePiece('N', 'W', 1, 7);
 		chessPieces.CreatePiece('B', 'W', 2, 7);
 		chessPieces.CreatePiece('Q', 'W', 3, 7);
@@ -62,11 +59,10 @@ public class ChessMain {
 			chessPieces.CreatePiece('P', 'W', p, 6);
 		
 		
-		
 	}
 	
 	
-	public static pointer generateBoard() {
+	public static void generateBoard() {
 		for (int i = 0; i < 8; i++) {
 			if (UserControl.side == 'W') {
 			System.out.print(Arrays.toString(chessBoard[i]));
@@ -82,14 +78,13 @@ public class ChessMain {
 				System.out.println(Arrays.toString(chessPsThreatsB[7-i]));
 			}
 		}
-		return null;
 
 	}
 	
 
 	
 	
-	public static pointer generateThreats() {
+	public static void generateThreats() {
 		for (int x=0; x<8; x++) {
 			for (int y=0;y<8;y++) {
 				chessBoardThreatsW[x][y] = 0;
@@ -104,13 +99,13 @@ public class ChessMain {
 				char color = chessBoard[y][x].charAt(0);
 				char name = chessBoard[y][x].charAt(1);
 				if (name == 'P') {
-					ChessThreats.PawnThreats(color, x, y, false);
+					chess.main.Pieces.Pawn.pawnThreats(color, x, y);
 				} else if (name == 'R') {
-					ChessThreats.RookThreats(color, x, y,false);
+					chess.main.Pieces.Rook.rookThreats(color, x, y);
 				} else if (name == 'B') {
 					ChessThreats.BishopThreats(color, x, y,false);
 				} else if (name == 'N') {
-					ChessThreats.KnightThreats(color, x, y,false);
+					chess.main.Pieces.Knight.knightThreats(color, x, y);
 				} else if (name == 'Q') {
 					ChessThreats.QueenThreats(color, x, y,false);
 				} else if (name == 'K') {
@@ -118,7 +113,6 @@ public class ChessMain {
 				}
 			}
 		}
-		return null;
 	}
 }
 

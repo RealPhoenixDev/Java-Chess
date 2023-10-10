@@ -7,25 +7,9 @@ package chess.main;
 public class ChessThreats {
 	
 	
-	public static void PawnThreats(char color, int x, int y, boolean switch_) {
-		if (color == 'W') {
-			try {
-				ChessMain.chessBoardThreatsW[y-1][x-1] += 1;}
-			catch (Exception e) {}
-			try {
-				ChessMain.chessBoardThreatsW[y-1][x+1] += 1;
-			} catch (Exception e) {}
-		} else if (color == 'B') {
-			try {
-				ChessMain.chessBoardThreatsB[y+1][x-1] += 1;}
-			catch (Exception e) {}
-			try {
-				ChessMain.chessBoardThreatsB[y+1][x+1] += 1;
-			} catch (Exception e) {}
-		}
-	}
+
 	
-	public static void RookThreats(char color, int x, int y, boolean switch_) {
+	public static void RookThreats(char color, int x, int y) {
 		// UP
 		int skip = 2;
 		int offsetUp = 1;
@@ -49,8 +33,8 @@ public class ChessThreats {
 		                }
 		                skip--;
 		                if (color == 'W') {
-		                	ChessMain.chessPsThreatsW[y - offsetUp][x] += (!switch_) ? 1 : -1;
-		                } else ChessMain.chessPsThreatsB[y - offsetUp][x] += (!switch_) ? 1 : -1;
+		                	ChessMain.chessPsThreatsW[y - offsetUp][x] += 1;
+		                } else ChessMain.chessPsThreatsB[y - offsetUp][x] += 1;
 		            } else {
 		                break;
 		            }
@@ -162,71 +146,7 @@ public class ChessThreats {
 		}
 	}
 	
-	public static void KnightThreats(char color, int x, int y, boolean switch_) {
-		// UP
-		try {
-			if (ChessMain.chessBoard[y-2][x-1].charAt(0) == ' ' || ChessMain.chessBoard[y-2][x-1].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-				if (color=='W') {
-					ChessMain.chessBoardThreatsW[y-2][x-1] += 1;
-				} else ChessMain.chessBoardThreatsB[y-2][x-1] += 1;
-			}
-		} catch (Exception e) {}
-		try {
-			if (ChessMain.chessBoard[y-2][x+1].charAt(0) == ' ' || ChessMain.chessBoard[y-2][x+1].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-				if (color=='W') {
-					ChessMain.chessBoardThreatsW[y-2][x+1] += 1;
-				} else ChessMain.chessBoardThreatsB[y-2][x+1] += 1;
-			}
-		} catch (Exception e) {}
-		
-		// DOWN
-		try {
-			if (ChessMain.chessBoard[y+2][x-1].charAt(0) == ' ' || ChessMain.chessBoard[y+2][x-1].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-				if (color=='W') {
-					ChessMain.chessBoardThreatsW[y+2][x-1] += 1;
-				} else ChessMain.chessBoardThreatsB[y+2][x-1] += 1;
-			}
-		} catch (Exception e) {}
-		try {
-			if (ChessMain.chessBoard[y+2][x+1].charAt(0) == ' ' || ChessMain.chessBoard[y-2][x+1].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-				if (color=='W') {
-					ChessMain.chessBoardThreatsW[y+2][x+1] += 1;
-				} else ChessMain.chessBoardThreatsB[y+2][x+1] += 1;
-					}
-		} catch (Exception e) {}
-		
-		// LEFT
-		try {
-			if (ChessMain.chessBoard[y-1][x-2].charAt(0) == ' ' || ChessMain.chessBoard[y-1][x-2].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-				if (color=='W') {
-					ChessMain.chessBoardThreatsW[y-1][x-2] += 1;
-				} else ChessMain.chessBoardThreatsB[y-1][x-2] += 1;
-			}
-		} catch (Exception e) {}
-		try {
-			if (ChessMain.chessBoard[y+1][x-2].charAt(0) == ' ' || ChessMain.chessBoard[y+1][x-2].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-				if (color=='W') {
-					ChessMain.chessBoardThreatsW[y+1][x-2] += 1;
-				} else ChessMain.chessBoardThreatsB[y+1][x-2] += 1;
-			}
-		} catch (Exception e) {}
-		
-		// RIGHT
-		try {
-			if (ChessMain.chessBoard[y-1][x+2].charAt(0) == ' ' || ChessMain.chessBoard[y-1][x+2].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-				if (color=='W') {
-					ChessMain.chessBoardThreatsW[y-1][x+2] += 1;
-				} else ChessMain.chessBoardThreatsB[y-1][x+2] += 1;
-					}
-		} catch (Exception e) {}
-		try {
-			if (ChessMain.chessBoard[y+1][x+2].charAt(0) == ' ' || ChessMain.chessBoard[y+1][x+2].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-				if (color=='W') {
-					ChessMain.chessBoardThreatsW[y+1][x+2] += 1;
-				} else ChessMain.chessBoardThreatsB[y+1][x+2] += 1;
-			}
-		} catch (Exception e) {}
-}
+
 	
 	public static void BishopThreats(char color, int x, int y, boolean switch_) {
 		// UP
@@ -638,46 +558,46 @@ public class ChessThreats {
 	}
 	
 	public static void KingThreats(char color, int x, int y, boolean switch_) {
-		try { // UP
-			if (color=='W') {
-				ChessMain.chessBoardThreatsW[y-1][x] += 1;
-			} else ChessMain.chessBoardThreatsB[y-1][x] += 1;
-		} catch (Exception e) {}
-		try { // UP LEFT
-			if (color=='W') {
-				ChessMain.chessBoardThreatsW[y-1][x-1] += 1;
-			} else ChessMain.chessBoardThreatsB[y-1][x-1] += 1;
-		} catch (Exception e) {}
-		try { // LEFT
-			if (color=='W') {
-				ChessMain.chessBoardThreatsW[y][x-1] += 1;
-			} else ChessMain.chessBoardThreatsB[y][x-1] += 1;
-		} catch (Exception e) {}
-		try { // DOWN LEFT
-			if (color=='W') {
-				ChessMain.chessBoardThreatsW[y+1][x-1] += 1;
-			} else ChessMain.chessBoardThreatsB[y+1][x-1] += 1;
-		} catch (Exception e) {}
-		try { // DOWN
-			if (color=='W') {
-				ChessMain.chessBoardThreatsW[y+1][x] += 1;
-			} else ChessMain.chessBoardThreatsB[y+1][x] += 1;
-		} catch (Exception e) {}
-		try { // DOWN RIGHT
-			if (color=='W') {
-				ChessMain.chessBoardThreatsW[y+1][x+1] += 1;
-			} else ChessMain.chessBoardThreatsB[y+1][x+1] += 1;
-		} catch (Exception e) {}
-		try { // RIGHT
-			if (color=='W') {
-				ChessMain.chessBoardThreatsW[y][x+1] += 1;
-			} else ChessMain.chessBoardThreatsB[y][x+1] += 1;
-		} catch (Exception e) {}
-		try { // UP RIGHT
-			if (color=='W') {
-				ChessMain.chessBoardThreatsW[y-1][x+1] += 1;
-			} else ChessMain.chessBoardThreatsB[y-1][x+1] += 1;
-		} catch (Exception e) {}
+		// try { // UP
+		// 	if (color=='W') {
+		// 		ChessMain.chessBoardThreatsW[y-1][x] += 1;
+		// 	} else ChessMain.chessBoardThreatsB[y-1][x] += 1;
+		// } catch (Exception e) {}
+		// try { // UP LEFT
+		// 	if (color=='W') {
+		// 		ChessMain.chessBoardThreatsW[y-1][x-1] += 1;
+		// 	} else ChessMain.chessBoardThreatsB[y-1][x-1] += 1;
+		// } catch (Exception e) {}
+		// try { // LEFT
+		// 	if (color=='W') {
+		// 		ChessMain.chessBoardThreatsW[y][x-1] += 1;
+		// 	} else ChessMain.chessBoardThreatsB[y][x-1] += 1;
+		// } catch (Exception e) {}
+		// try { // DOWN LEFT
+		// 	if (color=='W') {
+		// 		ChessMain.chessBoardThreatsW[y+1][x-1] += 1;
+		// 	} else ChessMain.chessBoardThreatsB[y+1][x-1] += 1;
+		// } catch (Exception e) {}
+		// try { // DOWN
+		// 	if (color=='W') {
+		// 		ChessMain.chessBoardThreatsW[y+1][x] += 1;
+		// 	} else ChessMain.chessBoardThreatsB[y+1][x] += 1;
+		// } catch (Exception e) {}
+		// try { // DOWN RIGHT
+		// 	if (color=='W') {
+		// 		ChessMain.chessBoardThreatsW[y+1][x+1] += 1;
+		// 	} else ChessMain.chessBoardThreatsB[y+1][x+1] += 1;
+		// } catch (Exception e) {}
+		// try { // RIGHT
+		// 	if (color=='W') {
+		// 		ChessMain.chessBoardThreatsW[y][x+1] += 1;
+		// 	} else ChessMain.chessBoardThreatsB[y][x+1] += 1;
+		// } catch (Exception e) {}
+		// try { // UP RIGHT
+		// 	if (color=='W') {
+		// 		ChessMain.chessBoardThreatsW[y-1][x+1] += 1;
+		// 	} else ChessMain.chessBoardThreatsB[y-1][x+1] += 1;
+		// } catch (Exception e) {}
 	}
 	
 	

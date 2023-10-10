@@ -13,146 +13,14 @@ public class ChessPieces{
 	static int kingXw = 4;
 	static int kingYw = 7;
 	
-	static int kingXb = 4;
-	static int kingYb = 0;
+	static int kingXb = 3;
+	static int kingYb = 5;
 	
 	
 
-	
-	public static void Pawn(char color,int x, int y) {
-		sw = !sw;
-		if (color == 'W') {
-			try {
-				if (ChessMain.chessBoard[y-1][x].charAt(0) == ' ') {
-					ChessMain.chessBoard[y-1][x] = ((ChessMain.chessBoard[y-1][x].charAt(2)=='_') ? ChessMain.chessBoard[y-1][x].replace('_', '*') : ChessMain.chessBoard[y-1][x].replace('*', '_'));
-					if (ChessMain.chessBoard[y-2][x].charAt(0) == ' ' || y == 6) {
-						ChessMain.chessBoard[y-2][x] = (ChessMain.chessBoard[y-2][x].charAt(2)=='_' ? ChessMain.chessBoard[y-2][x].replace('_', '*') : ChessMain.chessBoard[y-2][x].replace('*', '_'));
-					}
-				}
-			}catch (IndexOutOfBoundsException e) {}
-				
-			try {
-				if (ChessMain.chessBoard[y-1][x-1].charAt(0) == 'B' || ChessMain.chessBoard[y-1][x-1].charAt(1) == 'F') {
-					ChessMain.chessBoard[y-1][x-1] = (ChessMain.chessBoard[y-1][x-1].charAt(2)=='_' ? ChessMain.chessBoard[y-1][x-1].replace('_', '*') : ChessMain.chessBoard[y-1][x].replace('*', '_'));
-					
-				} 
-				
-			} catch (IndexOutOfBoundsException e) {}
-			try {	
-				if (ChessMain.chessBoard[y-1][x+1].charAt(0) == 'B' || ChessMain.chessBoard[y-1][x+1].charAt(1) == 'F') {
-					ChessMain.chessBoard[y-1][x+1] = (ChessMain.chessBoard[y-1][x+1].charAt(2)=='_' ? ChessMain.chessBoard[y-1][x+1].replace('_', '*') : ChessMain.chessBoard[y-1][x+1].replace('*', '_'));
-					
-				}
-			} catch (IndexOutOfBoundsException e) {}
-		} if (color == 'B') { //--------------------------------------------------------------------------
-			try {
-				if (ChessMain.chessBoard[y+1][x].charAt(0) == ' ') {
-					ChessMain.chessBoard[y+1][x] = (ChessMain.chessBoard[y+1][x].charAt(2)=='_' ? ChessMain.chessBoard[y+1][x].replace('_', '*') : ChessMain.chessBoard[y+1][x].replace('*', '_'));
-					if (ChessMain.chessBoard[y+2][x].charAt(0) == ' ' || y == 1) {
-						ChessMain.chessBoard[y+2][x] = (ChessMain.chessBoard[y+2][x].charAt(2)=='_' ? ChessMain.chessBoard[y+2][x].replace('_', '*') : ChessMain.chessBoard[y+2][x].replace('*', '_'));
-					}
-				}
-			}catch (IndexOutOfBoundsException e) {}
-				
-			try {
-				if (ChessMain.chessBoard[y+1][x-1].charAt(0) == 'W' || ChessMain.chessBoard[y+1][x-1].charAt(1) == 'F') {
-					ChessMain.chessBoard[y+1][x-1] = (ChessMain.chessBoard[y+1][x-1].charAt(2)=='_' ? ChessMain.chessBoard[y+1][x-1].replace('_', '*') : ChessMain.chessBoard[y+1][x-1].replace('*', '_'));} 
-				
-			} catch (IndexOutOfBoundsException e) {}
-			try {	
-				if (ChessMain.chessBoard[y+1][x+1].charAt(0) == 'W' || ChessMain.chessBoard[y+1][x+1].charAt(1) == 'F') {
-					ChessMain.chessBoard[y+1][x+1] = (ChessMain.chessBoard[y+1][x+1].charAt(2)=='_' ? ChessMain.chessBoard[y+1][x+1].replace('_', '*') : ChessMain.chessBoard[y+1][x+1].replace('*', '_'));}
-			} catch (IndexOutOfBoundsException e) {}
-		}
-		if (!sw) ChessMain.generateBoard();
-	}
 
 	
-	public static void Rook(char color,int x, int y) {
-		sw = !sw;
-			// UP
-			int ofset_up = 1;
-			while (y-ofset_up >=0 && ChessMain.chessBoard[y-ofset_up][x].charAt(0) == ' ') {
-				ChessMain.chessBoard[y-ofset_up][x] = (ChessMain.chessBoard[y-ofset_up][x].charAt(2)=='_' ? ChessMain.chessBoard[y-ofset_up][x].replace('_', '*') : ChessMain.chessBoard[y-ofset_up][x].replace('*', '_'));
-				ofset_up++;}
-			try {
-				if (ChessMain.chessBoard[y-ofset_up][x].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y-ofset_up][x] = (ChessMain.chessBoard[y-ofset_up][x].charAt(2)=='_' ? ChessMain.chessBoard[y-ofset_up][x].replace('_', '*') : ChessMain.chessBoard[y-ofset_up][x].replace('*', '_'));}
-			} catch (Exception e) {}
-			// LEFT 
-			int ofset_left = 1;
-			while (x-ofset_left >=0 && ChessMain.chessBoard[y][x-ofset_left].charAt(0) == ' ' ) {
-				ChessMain.chessBoard[y][x-ofset_left] = (ChessMain.chessBoard[y][x-ofset_left].charAt(2)=='_' ? ChessMain.chessBoard[y][x-ofset_left].replace('_', '*') : ChessMain.chessBoard[y][x-ofset_left].replace('*', '_'));
-				ofset_left++;}
-			try {
-				if (ChessMain.chessBoard[y][x-ofset_left].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y][x-ofset_left] = (ChessMain.chessBoard[y][x-ofset_left].charAt(2)=='_' ? ChessMain.chessBoard[y][x-ofset_left].replace('_', '*') : ChessMain.chessBoard[y][x-ofset_left].replace('*', '_'));}
-			} catch (Exception e) {}
-			// DOWN
-			int ofset_down = 1;
-			while (y+ofset_down <=7 && ChessMain.chessBoard[y+ofset_down][x].charAt(0) == ' ' ) {
-				ChessMain.chessBoard[y+ofset_down][x] = (ChessMain.chessBoard[y+ofset_down][x].charAt(2)=='_' ? ChessMain.chessBoard[y+ofset_down][x].replace('_', '*') : ChessMain.chessBoard[y+ofset_down][x].replace('*', '_'));
-				ofset_down++;}
-			try {
-				if (ChessMain.chessBoard[y+ofset_down][x].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y+ofset_down][x] = (ChessMain.chessBoard[y+ofset_down][x].charAt(2)=='_' ? ChessMain.chessBoard[y+ofset_down][x].replace('_', '*') : ChessMain.chessBoard[y+ofset_down][x].replace('*', '_'));}
-			} catch (Exception e) {}
-			// RIGHT
-			int ofset_right = 1;
-			while (x+ofset_right <=7 && ChessMain.chessBoard[y][x+ofset_right].charAt(0) == ' ' ) {
-				ChessMain.chessBoard[y][x+ofset_right] = (ChessMain.chessBoard[y][x+ofset_right].charAt(2)=='_' ? ChessMain.chessBoard[y][x+ofset_right].replace('_', '*') : ChessMain.chessBoard[y][x+ofset_right].replace('*', '_'));
-				ofset_right++;}
-			try {
-				if (ChessMain.chessBoard[y][x+ofset_right].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y][x+ofset_right] = (ChessMain.chessBoard[y][x+ofset_right].charAt(2)=='_' ? ChessMain.chessBoard[y][x+ofset_right].replace('_', '*') : ChessMain.chessBoard[y][x+ofset_right].replace('*', '_'));}
-			} catch (Exception e) {}
-			if (!sw) ChessMain.generateBoard();
-	}
-
 	
-	public static void Knight(char color,int x, int y) {
-		sw = !sw;
-			// UP
-			try {
-				if (ChessMain.chessBoard[y-2][x-1].charAt(0) == ' ' || ChessMain.chessBoard[y-2][x-1].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y-2][x-1] = (ChessMain.chessBoard[y-2][x-1].charAt(2)=='_' ? ChessMain.chessBoard[y-2][x-1].replace('_', '*') : ChessMain.chessBoard[y-2][x-1].replace('*', '_'));}
-			} catch (Exception e) {}
-			try {
-				if (ChessMain.chessBoard[y-2][x+1].charAt(0) == ' ' || ChessMain.chessBoard[y-2][x+1].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y-2][x+1] = (ChessMain.chessBoard[y-2][x+1].charAt(2)=='_' ? ChessMain.chessBoard[y-2][x+1].replace('_', '*') : ChessMain.chessBoard[y-2][x+1].replace('*', '_'));}
-			} catch (Exception e) {}
-			
-			// DOWN
-			try {
-				if (ChessMain.chessBoard[y+2][x-1].charAt(0) == ' ' || ChessMain.chessBoard[y+2][x-1].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y+2][x-1] = (ChessMain.chessBoard[y+2][x-1].charAt(2)=='_' ? ChessMain.chessBoard[y+2][x-1].replace('_', '*') : ChessMain.chessBoard[y+2][x-1].replace('*', '_'));}
-			} catch (Exception e) {}
-			try {
-				if (ChessMain.chessBoard[y+2][x+1].charAt(0) == ' ' || ChessMain.chessBoard[y-2][x+1].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y+2][x+1] = (ChessMain.chessBoard[y+2][x+1].charAt(2)=='_' ? ChessMain.chessBoard[y+2][x+1].replace('_', '*') : ChessMain.chessBoard[y+2][x+1].replace('*', '_'));}
-			} catch (Exception e) {}
-			
-			// LEFT
-			try {
-				if (ChessMain.chessBoard[y-1][x-2].charAt(0) == ' ' || ChessMain.chessBoard[y-1][x-2].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y-1][x-2] = (ChessMain.chessBoard[y-1][x-2].charAt(2)=='_' ? ChessMain.chessBoard[y-1][x-2].replace('_', '*') : ChessMain.chessBoard[y-1][x-2].replace('*', '_'));}
-			} catch (Exception e) {}
-			try {
-				if (ChessMain.chessBoard[y+1][x-2].charAt(0) == ' ' || ChessMain.chessBoard[y+1][x-2].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y+1][x-2] = (ChessMain.chessBoard[y+1][x-2].charAt(2)=='_' ? ChessMain.chessBoard[y+1][x-2].replace('_', '*') : ChessMain.chessBoard[y+1][x-2].replace('*', '_'));}
-			} catch (Exception e) {}
-			
-			// RIGHT
-			try {
-				if (ChessMain.chessBoard[y-1][x+2].charAt(0) == ' ' || ChessMain.chessBoard[y-1][x+2].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y-1][x+2] = (ChessMain.chessBoard[y-1][x+2].charAt(2)=='_' ? ChessMain.chessBoard[y-1][x+2].replace('_', '*') : ChessMain.chessBoard[y-1][x+2].replace('*', '_'));}
-			} catch (Exception e) {}
-			try {
-				if (ChessMain.chessBoard[y+1][x+2].charAt(0) == ' ' || ChessMain.chessBoard[y+1][x+2].charAt(0) == ((color == 'W') ? 'B' : 'W')) {
-					ChessMain.chessBoard[y+1][x+2] = (ChessMain.chessBoard[y+1][x+2].charAt(2)=='_' ? ChessMain.chessBoard[y+1][x+2].replace('_', '*') : ChessMain.chessBoard[y+1][x+2].replace('*', '_'));}
-			} catch (Exception e) {}
-			if (!sw) ChessMain.generateBoard();
-	}
 
 	
 	public static void Bishop(char color,int x, int y) {
@@ -342,6 +210,16 @@ public class ChessPieces{
 	
 	public void CreatePiece(char name, char color, int x,  int y) {
 		ChessMain.chessBoard[y][x] = Character.toString(color) + Character.toString(name)+"_";
+
+		if (name == 'K') {
+			if (color == 'W') {
+				kingXw = x;
+				kingYw = y;
+			} else {
+				kingXb = x;
+				kingYb = y;
+			}
+		}
 	}
 	
 	
@@ -356,13 +234,13 @@ public class ChessPieces{
 		
 		
 		if (name == 'P') {
-			Pawn(color, x, y);
+			chess.main.Pieces.Pawn.pawnMoves(color, x, y);
 		} else if (name == 'R') {
-			Rook(color,x,y);
+			chess.main.Pieces.Rook.rookMoves(color, x, y);
 		} else if (name == 'B') {
 			Bishop(color, x, y);
 		} else if (name == 'N') {
-			Knight(color, x, y);
+			chess.main.Pieces.Knight.knightMoves(color, x, y);
 		} else if (name == 'Q') {
 			Queen(color, x, y);
 		} else if (name == 'K') {
@@ -382,13 +260,14 @@ public class ChessPieces{
 		
 		
 		if (name == 'P') {
-			Pawn(color, x, y);
+			chess.main.Pieces.Pawn.pawnMoves(color, x, y);
+			if (color == 'W') chess.main.Pieces.Pawn.movesW[x]++; else chess.main.Pieces.Pawn.movesB[x]++;
 		} else if (name == 'R') {
-			Rook(color,x,y);
+			chess.main.Pieces.Rook.rookMoves(color, x, y);
 		} else if (name == 'B') {
 			Bishop(color, x, y);
 		} else if (name == 'N') {
-			Knight(color, x, y);
+			chess.main.Pieces.Knight.knightMoves(color, x, y);
 		} else if (name == 'Q') {
 			Queen(color, x, y);
 		} else if (name == 'K') {
@@ -407,5 +286,11 @@ public class ChessPieces{
 		System.out.println(ChessMain.chessBoard[y][x]);
 		
 	}
+
+
+
+
+
+
 }
 

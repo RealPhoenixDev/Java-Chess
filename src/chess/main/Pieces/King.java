@@ -1,4 +1,4 @@
-package chess.main;
+package chess.main.Pieces;
 
 public class King {
     

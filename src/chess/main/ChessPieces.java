@@ -9,10 +9,11 @@ public class ChessPieces{
 	int king_moves_W = 8;
 	int king_moves_B = 8;
 	
-	static int kingXw = 0;
-	static int kingYw = 0;
 	
-	static int kingXb = 0;
+	static int kingXw = 4;
+	static int kingYw = 7;
+	
+	static int kingXb = 4;
 	static int kingYb = 0;
 	
 	

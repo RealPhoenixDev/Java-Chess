@@ -1,6 +1,12 @@
 package chess.main;
+	
+
+
+
 
 public class ChessThreats {
+	
+	
 	public static void PawnThreats(char color, int x, int y, boolean switch_) {
 		if (color == 'W') {
 			try {
@@ -673,4 +679,21 @@ public class ChessThreats {
 			} else ChessMain.chessBoardThreatsB[y-1][x+1] += 1;
 		} catch (Exception e) {}
 	}
+	
+	
+	public static Integer isKingCell(char color, int x, int y) {
+		
+		if (color == 'W') {
+			if (x==ChessPieces.kingXb && y==ChessPieces.kingYb) {
+				return 1;
+			} else return 0;
+		} else if (color == 'B') {
+			if (x==ChessPieces.kingXw && y==ChessPieces.kingYw) {
+				return 1;
+			} else return 0;
+		}
+		return 0;
+
+	}
+	
 }

@@ -4,7 +4,12 @@ import chess.main.ChessMain;
 import chess.main.ChessMain.pointer;
 
 public class Pawn {
-    
+	
+	
+	public static String[][] chessBoardBuffer = new String[8][8];
+	
+
+	
     static boolean sw = true;
     public static void PawnMoves(char color,int x, int y) {
 		sw = !sw;
@@ -35,7 +40,7 @@ public class Pawn {
 					
 				}
 			} catch (IndexOutOfBoundsException e) {}
-		} if (color == 'B') { //--------------------------------------------------------------------------
+		} else if (color == 'B') { //--------------------------------------------------------------------------
             try {
                 String cellDown = ChessMain.chessBoard[y+1][x];
                 String cellDown2 = ChessMain.chessBoard[y+2][x];
@@ -62,6 +67,30 @@ public class Pawn {
                 }
             } catch (IndexOutOfBoundsException e) {}
          }
+    }
         
+    public static void PawnThreats(char color, int x, int y, boolean switch_) {
+    	for (int y1 = 0; y1 < 8; y1++) {
+			for (int x1 = 0;x1<8;x1++) {
+				chessBoardBuffer[y1][x1] = "";
+			}
+		}
+		if (color == 'W') {
+			try {
+				ChessMain.chessBoardThreatsW[y-1][x-1] += 1;}
+			catch (Exception e) {}
+			try {
+				ChessMain.chessBoardThreatsW[y-1][x+1] += 1;
+			} catch (Exception e) {}
+		} else if (color == 'B') {
+			try {
+				ChessMain.chessBoardThreatsB[y+1][x-1] += 1;}
+			catch (Exception e) {}
+			try {
+				ChessMain.chessBoardThreatsB[y+1][x+1] += 1;
+			} catch (Exception e) {}
+		}
+    }
+		
     
 }

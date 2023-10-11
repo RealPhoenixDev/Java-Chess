@@ -50,7 +50,7 @@ public class ChessMain {
 		// chessPieces.CreatePiece('P', 'W', p, 6);
 
 		chessPieces.CreatePiece('K', 'B', 7, 7);
-		chessPieces.CreatePiece('B', 'W', 3, 3);
+		chessPieces.CreatePiece('Q', 'W', 3, 3);
 		chessPieces.CreatePiece('R', 'B', 5, 5);
 	}
 
@@ -96,7 +96,7 @@ public class ChessMain {
 				} else if (name == 'N') {
 					chess.main.Pieces.Knight.knightThreats(color, x, y);
 				} else if (name == 'Q') {
-					ChessThreats.QueenThreats(color, x, y, false);
+					chess.main.Pieces.Queen.queenThreats(color, x, y);
 				} else if (name == 'K') {
 					ChessThreats.KingThreats(color, x, y, false);
 				}

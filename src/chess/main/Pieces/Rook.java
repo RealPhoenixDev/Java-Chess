@@ -1,6 +1,6 @@
 package chess.main.Pieces;
 
-import java.util.Arrays;
+
 
 import chess.main.ChessMain;
 import chess.main.ChessThreats;

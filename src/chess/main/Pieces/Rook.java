@@ -1,15 +1,11 @@
 package chess.main.Pieces;
 
-
-
 import java.util.Arrays;
 
 import chess.main.ChessMain;
 import chess.main.ChessThreats;
 
 public class Rook {
-
-    
 
     public static boolean sw = true;
 
@@ -45,9 +41,9 @@ public class Rook {
                 cellDir = (cellDir.charAt(2) == '_' ? cellDir.replace('_', '*') : cellDir.replace('*', '_'));
                 ChessMain.chessBoard[y + offsety][x + offsetx] = cellDir;
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
-
 
     public static void rookThreats(char color, int x, int y) {
         // UP
@@ -67,83 +63,76 @@ public class Rook {
         int offsety = 1 * yDir;
         int skip = 2;
 
-        for (int y1 = 0; y1 < 8; y1++) //generating buffer array, it is used for checking for king threats locally and only pushing to main board if needed.
-			for (int x1 = 0;x1<8;x1++) 
-				chessBoardBuffer[y1][x1] = 0;
+        for (int y1 = 0; y1 < 8; y1++) // generating buffer array, it is used for checking for king threats locally and
+                                       // only pushing to main board if needed.
+            for (int x1 = 0; x1 < 8; x1++)
+                chessBoardBuffer[y1][x1] = 0;
         // Actual threat logic
         try {
-            while (ChessMain.chessBoard[y + offsety][x + offsetx].charAt(0) == ' ' && skip>0) {
+            while (skip > 0) {
                 Integer cellDir = chessBoardBuffer[y + offsety][x + offsetx];
-                // if (skip==2 && ChessMain.chessBoard[y + offsety][x + offsetx].charAt(0) == ' ') {
-                //     cellDir+=1;
-                //     chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                //     if (ChessThreats.isKingCell(color, x+offsetx, y+offsety)==1) {
-                //         if (color == 'W') {
-                //             ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW, chessBoardBuffer);
-                //             ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW, chessBoardBuffer);
-                //         } else {
-                //             ChessMain.chessBoardThreatsB = mergeArrrays(ChessMain.chessBoardThreatsB, chessBoardBuffer);
-                //             ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB, chessBoardBuffer);}
-                //         System.out.println("King Found!1");
-                //         return;
-                //     }
-                // } else {
-                //     if (ChessMain.chessBoard[y + offsety][x + offsetx].charAt(1) != color) {
-                        
-                //     }
-                // }
-                // if (skip==1 && ChessMain.chessBoard[y + offsety][x + offsetx].charAt(0) == ' ') {
-                //     cellDir+=1;
-                //     chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                //     if (ChessThreats.isKingCell(color, x+offsetx, y+offsety)==1) {
-                //         if (color == 'W') {
-                //             ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW, chessBoardBuffer);
-                //         } else ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB, chessBoardBuffer);
-                //         System.out.println("King Found!2");
-                //         return;
-                //     }
-                // } else skip--;
 
                 if (ChessMain.chessBoard[y + offsety][x + offsetx].charAt(0) == ' ') {
                     cellDir++;
                     chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                } else{
-                    System.out.println("test1"); //TODO: Doesnt work I want to die
+                } else {
                     if (ChessMain.chessBoard[y + offsety][x + offsetx].charAt(0) != color) {
-                        System.out.println("test");
-                        if (ChessThreats.isKingCell(color, x+offsetx, y+offsety)==1) {
-                            if (color == 'W') {
-                                ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW, chessBoardBuffer);
-                                ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW, chessBoardBuffer);
-                            } else {
-                                ChessMain.chessBoardThreatsB = mergeArrrays(ChessMain.chessBoardThreatsB, chessBoardBuffer);
-                                ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB, chessBoardBuffer);}
-                            System.out.println("King Found!1");
-                            return;
-                        }
-                        if (skip==2) {
+                        if (skip == 2) {
                             cellDir++;
                             chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
+                            if (ChessThreats.isKingCell(color, x + offsetx, y + offsety) == 1) {
+                                if (color == 'W') {
+                                    ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW,
+                                            chessBoardBuffer);
+                                    ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
+                                            chessBoardBuffer);
+                                } else {
+                                    ChessMain.chessBoardThreatsB = mergeArrrays(ChessMain.chessBoardThreatsB,
+                                            chessBoardBuffer);
+                                    ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
+                                            chessBoardBuffer);
+
+                                }
+                                break;
+                            }
+                            skip--;
+                        } else if (skip == 1) {
+                            if (ChessThreats.isKingCell(color, x + offsetx, y + offsety) == 1) {
+                                cellDir++;
+                                chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
+                                if (color == 'W') {
+                                    ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
+                                            chessBoardBuffer);
+                                } else {
+                                    ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
+                                            chessBoardBuffer);
+                                }
+                                break;
+                            }
+                            skip--;
                         }
-                    } else break;
+                    } else
+                        break;
                 }
                 offsetx += 1 * Math.signum(offsetx);
                 offsety += 1 * Math.signum(offsety);
-                for (int x_=0; x_<8; x_++) 
-                    System.out.println(Arrays.toString(chessBoardBuffer[x_]));
-                System.out.println("------------------------");
+
             }
+
             Integer cellDir = chessBoardBuffer[y + offsety][x + offsetx];
             if (ChessThreats.isKingCell(color, offsetx, offsety) == 1) {
-                cellDir+=1;
+                cellDir += 1;
                 if (color == 'W') {
                     ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW, chessBoardBuffer);
-                } else ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB, chessBoardBuffer);
+                } else
+                    ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB, chessBoardBuffer);
                 System.out.println("King Found!3");
             }
-        } catch (Exception e) {}
-    }
+        } catch (
 
+        Exception e) {
+        }
+    }
 
     private static Integer[][] mergeArrrays(Integer[][] arr1, Integer[][] arr2) {
         Integer[][] arr3 = new Integer[arr1.length][arr1[0].length];
@@ -154,6 +143,5 @@ public class Rook {
         }
         return arr3;
     }
-
 
 }

@@ -48,20 +48,39 @@ public class ChessThreats {
 		// } catch (Exception e) {}
 	}
 
-	public static Integer isKingCell(char color, int x, int y) {
+	public static boolean isKingCell(char color, int x, int y) {
 
 		if (color == 'W') {
-			if (x == ChessPieces.kingXb && y == ChessPieces.kingYb) {
-				return 1;
+			
+			if (ChessPieces.kingXb-x ==0 && ChessPieces.kingYb-y==0) {
+				return true;
 			} else
-				return 0;
+				return false;
 		} else if (color == 'B') {
-			if (x == ChessPieces.kingXw && y == ChessPieces.kingYw) {
-				return 1;
+			if (x - ChessPieces.kingXw == 0 && y - ChessPieces.kingYw==0) {
+				return true;
 			} else
-				return 0;
+				return false;
 		}
-		return 0;
+		return false;
+
+	}
+
+	public static boolean isKingNear(char color, int x, int y) {
+
+		if (color == 'W') {
+			
+			if (Math.abs(ChessPieces.kingXb-x) <=1 && Math.abs(ChessPieces.kingYb-y)<=1) {
+				return true;
+			} else
+				return false;
+		} else if (color == 'B') {
+			if (Math.abs(x - ChessPieces.kingXw)  <=1 && Math.abs(y - ChessPieces.kingYw)<=1) {
+				return true;
+			} else
+				return false;
+		}
+		return false;
 
 	}
 

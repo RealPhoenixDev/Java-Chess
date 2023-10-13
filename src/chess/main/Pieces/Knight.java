@@ -39,7 +39,7 @@ public class Knight {
                 continue;
             }
             Integer cellMove = (color == 'W') ? ChessMain.chessBoardThreatsW[y_][x_] : ChessMain.chessBoardThreatsB[y_][x_];
-            if (ChessThreats.isKingCell(color, x_, y_) == 1) {
+            if (ChessThreats.isKingCell(color, x_, y_)) {
                 cellMove++;
                 if (color == 'W') {
                     ChessMain.chessBoardThreatsW[y_][x_] += 1;

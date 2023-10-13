@@ -73,7 +73,7 @@ public class UserControl {
 					ChessPieces.GetPiecePath(cellx, celly);
 					continue;
 				} else if (ChessMain.chessBoard[nextMovey][nextMovex].charAt(2) == '*') {
-					char name = ChessMain.chessBoard[nextMovey][nextMovex].charAt(1);
+					char name = ChessMain.chessBoard[celly][cellx].charAt(1);
 					ChessPieces.movePiece(name, move, cellx, celly, nextMovex, nextMovey);
 				} else {
 					ChessPieces.GetPiecePath(cellx, celly);

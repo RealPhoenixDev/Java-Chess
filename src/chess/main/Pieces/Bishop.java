@@ -77,7 +77,7 @@ public class Bishop {
                         if (skip == 2) {
                             cellDir++;
                             chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                            if (ChessThreats.isKingCell(color, x + offsetx, y + offsety) == 1) {
+                            if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
                                 if (color == 'W') {
                                     ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW,
                                             chessBoardBuffer);
@@ -94,7 +94,7 @@ public class Bishop {
                             }
                             skip--;
                         } else if (skip == 1) {
-                            if (ChessThreats.isKingCell(color, x + offsetx, y + offsety) == 1) {
+                            if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)){
                                 cellDir++;
                                 chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
                                 if (color == 'W') {
@@ -113,21 +113,24 @@ public class Bishop {
                 }
                 offsetx += 1 * Math.signum(offsetx);
                 offsety += 1 * Math.signum(offsety);
-            }
+            } 
+        }catch (Exception e) {}
 
+        try {
+            for (int y1 = 0; y1 < 8; y1++)  for (int x1 = 0; x1 < 8; x1++) chessBoardBuffer[y1][x1] = 0;
+            offsetx = xDir;
+            offsety = yDir;
             Integer cellDir = chessBoardBuffer[y + offsety][x + offsetx];
-            if (ChessThreats.isKingCell(color, offsetx, offsety) == 1) {
-                cellDir += 1;
+            if (ChessThreats.isKingNear(color, x +offsetx, y + offsety)) {
+                cellDir++;
+                chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
                 if (color == 'W') {
-                    ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW, chessBoardBuffer);
-                } else
-                    ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB, chessBoardBuffer);
-                System.out.println("King Found!3");
-            }
-        } catch (
+                    ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW, chessBoardBuffer);
+                } else ChessMain.chessBoardThreatsB = mergeArrrays(ChessMain.chessBoardThreatsB, chessBoardBuffer);
+                } 
+            } catch (Exception e) {}
 
-        Exception e) {
-        }
+            
     }
 
     private static Integer[][] mergeArrrays(Integer[][] arr1, Integer[][] arr2) {

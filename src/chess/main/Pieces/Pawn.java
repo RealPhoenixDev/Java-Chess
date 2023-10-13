@@ -49,9 +49,9 @@ public class Pawn {
     	
 		Integer[] cellMove = (color == 'W') ? ChessMain.chessBoardThreatsW[y-1] : ChessMain.chessBoardThreatsB[y+1];
 
-			if (ChessThreats.isKingCell(color, x-1, y-(1*modifier)) == 1)
+			if (ChessThreats.isKingCell(color, x-1, y-(1*modifier)))
 				cellMove[x-1] += 1;
-			if (ChessThreats.isKingCell(color, x+1, y-(1*modifier)) == 1) 
+			if (ChessThreats.isKingCell(color, x+1, y-(1*modifier))) 
 				cellMove[x+1] += 1;
 		
 				if (color == 'W') {

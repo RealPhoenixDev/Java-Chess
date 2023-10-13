@@ -34,9 +34,8 @@ public class UserControl {
 
 			if (move == 'W') {
 				System.out.println("White Moves!");
-			} else if (move == 'B') {
+			} else
 				System.out.println("Black Moves!");
-			}
 
 			try {
 				System.out.println("Select Piece");
@@ -46,14 +45,15 @@ public class UserControl {
 
 				if (side == 'B') {
 					int cell_1 = Character.getNumericValue(cell.charAt(0));
-					int cell_2 = Character.getNumericValue(cell.charAt(1));
+					int cell_2 = cell.charAt(1) - '0';
 					cell = cell_1 + Integer.toString(7 - cell_2);
 				}
 
-				if (ChessMain.chessBoard[Integer.parseInt(Character.toString(cell.charAt(1)))][Integer
-						.parseInt(Character.toString(cell.charAt(0)))].charAt(0) == move) {
-					ChessPieces.GetPiecePath(Integer.parseInt(Character.toString(cell.charAt(0))),
-							Integer.parseInt(Character.toString(cell.charAt(1))));
+				int cellx = cell.charAt(0) - '0';
+				int celly = cell.charAt(1) - '0';
+
+				if (ChessMain.chessBoard[celly][cellx].charAt(0) == move) {
+					ChessPieces.GetPiecePath(cellx, celly);
 				} else {
 					throw new Exception("Error1!");
 				}
@@ -62,26 +62,21 @@ public class UserControl {
 				String next_move = input.nextLine();
 
 				if (side == 'B') {
-					int cell_1 = Character.getNumericValue(next_move.charAt(0));
-					int cell_2 = Character.getNumericValue(next_move.charAt(1));
+					int cell_1 = next_move.charAt(0) - '0';
+					int cell_2 = next_move.charAt(1) - '0';
 					next_move = cell_1 + Integer.toString(7 - cell_2);
 				}
+				int nextMovex = next_move.charAt(0) - '0';
+				int nextMovey = next_move.charAt(1) - '0';
 
 				if (cell.equals(next_move)) {
-					ChessPieces.GetPiecePath(Integer.parseInt(Character.toString(cell.charAt(0))),
-							Integer.parseInt(Character.toString(cell.charAt(1))));
+					ChessPieces.GetPiecePath(cellx, celly);
 					continue;
-				} else if (ChessMain.chessBoard[Integer.parseInt(Character.toString(next_move.charAt(1)))][Integer
-						.parseInt(Character.toString(next_move.charAt(0)))].charAt(2) == '*') {
-					char name = ChessMain.chessBoard[Integer.parseInt(Character.toString(cell.charAt(1)))][Integer
-							.parseInt(Character.toString(cell.charAt(0)))].charAt(1);
-					ChessPieces.movePiece(name, move, Character.getNumericValue(cell.charAt(0)),
-							Character.getNumericValue(cell.charAt(1)),
-							Character.getNumericValue(next_move.charAt(0)),
-							Character.getNumericValue(next_move.charAt(1)));
+				} else if (ChessMain.chessBoard[nextMovey][nextMovex].charAt(2) == '*') {
+					char name = ChessMain.chessBoard[nextMovey][nextMovex].charAt(1);
+					ChessPieces.movePiece(name, move, cellx, celly, nextMovex, nextMovey);
 				} else {
-					ChessPieces.GetPiecePath(Integer.parseInt(Character.toString(cell.charAt(0))),
-							Integer.parseInt(Character.toString(cell.charAt(1))));
+					ChessPieces.GetPiecePath(cellx, celly);
 					throw new Exception("Error!");
 				}
 

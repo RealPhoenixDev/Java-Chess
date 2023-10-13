@@ -9,11 +9,11 @@ public class Queen {
     public static void queenMoves(char color, int x, int y) {
         sw = !sw;
 
-        //UP
+        // UP
         queenMovesDirection(color, x, y, 0, -1);
         // UP LEFT
         queenMovesDirection(color, x, y, -1, -1);
-        // LEFT 
+        // LEFT
         queenMovesDirection(color, x, y, -1, 0);
         // DOWN LEFT
         queenMovesDirection(color, x, y, -1, 1);
@@ -51,11 +51,11 @@ public class Queen {
     }
 
     public static void queenThreats(char color, int x, int y) {
-        //UP
+        // UP
         queenThreatsDirection(color, x, y, 0, -1);
         // UP LEFT
         queenThreatsDirection(color, x, y, -1, -1);
-        // LEFT 
+        // LEFT
         queenThreatsDirection(color, x, y, -1, 0);
         // DOWN LEFT
         queenThreatsDirection(color, x, y, -1, 1);
@@ -156,4 +156,3 @@ public class Queen {
         return arr3;
     }
 }
-

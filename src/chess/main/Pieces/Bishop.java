@@ -1,6 +1,5 @@
 package chess.main.Pieces;
 
-
 import chess.main.ChessMain;
 import chess.main.ChessThreats;
 
@@ -133,11 +132,9 @@ public class Bishop {
 
     private static Integer[][] mergeArrrays(Integer[][] arr1, Integer[][] arr2) {
         Integer[][] arr3 = new Integer[arr1.length][arr1[0].length];
-        for (int i = 0; i < arr1.length; i++) {
-            for (int j = 0; j < arr1[0].length; j++) {
+        for (int i = 0; i < arr1.length; i++)
+            for (int j = 0; j < arr1[0].length; j++)
                 arr3[i][j] = arr1[i][j] + arr2[i][j];
-            }
-        }
         return arr3;
     }
 }

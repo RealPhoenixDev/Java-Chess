@@ -12,7 +12,6 @@ public class ChessPieces {
 	static int kingXb = 3;
 	static int kingYb = 5;
 
-
 	public void CreatePiece(char name, char color, int x, int y) {
 		ChessMain.chessBoard[y][x] = Character.toString(color) + Character.toString(name) + "_";
 
@@ -42,7 +41,7 @@ public class ChessPieces {
 		} else if (name == 'Q') {
 			chess.main.Pieces.Queen.queenMoves(color, x, y);
 		} else if (name == 'K') {
-			
+			chess.main.Pieces.King.kingMoves(color, x, y);
 			if (color == 'W') {
 				kingXw = x;
 				kingYw = y;
@@ -71,7 +70,7 @@ public class ChessPieces {
 		} else if (name == 'Q') {
 			chess.main.Pieces.Queen.queenMoves(color, x, y);
 		} else if (name == 'K') {
-			
+			chess.main.Pieces.King.kingMoves(color, x, y);
 			if (color == 'W') {
 				kingXw = x;
 				kingYw = y;

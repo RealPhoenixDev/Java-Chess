@@ -16,8 +16,7 @@ public class King {
                 int newy = y + move[1];
 
                 String cell = ChessMain.chessBoard[newy][newx];
-                int cellThreat = (color == 'W') ? ChessMain.chessBoardThreatsB[newy][newx]
-                        : ChessMain.chessBoardThreatsW[newy][newx];
+                int cellThreat = ChessMain.chessBoardThreats[newy][newx];
                 if (cell.charAt(0) == ' ' && cellThreat == 0) {
                     cell = (cell.charAt(2) == '_' ? cell.replace('_', '*') : cell.replace('*', '_'));
                     ChessMain.chessBoard[newy][newx] = cell;

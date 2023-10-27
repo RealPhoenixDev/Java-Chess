@@ -38,12 +38,10 @@ public class Knight {
             if (x_ > 7 || x_ < 0 || y_ > 7 || y_ < 0) {
                 continue;
             }
-            Integer cellMove = (color == 'W') ? ChessMain.chessBoardThreatsW[y_][x_] : ChessMain.chessBoardThreatsB[y_][x_];
+            Integer cellMove = ChessMain.chessBoardThreats[y_][x_];
             if (ChessThreats.isKingCell(color, x_, y_)) {
                 cellMove++;
-                if (color == 'W') {
-                    ChessMain.chessBoardThreatsW[y_][x_] += 1;
-                } else ChessMain.chessBoardThreatsB[y_][x_] += 1;
+                ChessMain.chessBoardThreats[y_][x_] += 1;
             }
             
         }

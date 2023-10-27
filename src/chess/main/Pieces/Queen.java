@@ -93,14 +93,11 @@ public class Queen {
                         cellDir++;
                         chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
                         if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
+                            ChessMain.chessBoardThreats = mergeArrrays(ChessMain.chessBoardThreats,chessBoardBuffer);
                             if (color == 'W') {
-                                ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW,
-                                        chessBoardBuffer);
                                 ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
                                         chessBoardBuffer);
                             } else {
-                                ChessMain.chessBoardThreatsB = mergeArrrays(ChessMain.chessBoardThreatsB,
-                                        chessBoardBuffer);
                                 ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
                                         chessBoardBuffer);
 
@@ -132,12 +129,10 @@ public class Queen {
             offsety = yDir;
             Integer cellDir = chessBoardBuffer[y + offsety][x + offsetx];
             if (ChessThreats.isKingNear(color, x +offsetx, y + offsety)) {
-                cellDir++;
+                System.out.println(cellDir);
+                if (ChessMain.chessBoardThreats[y + offsety][x + offsetx]==0) cellDir++;
                 chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                if (color == 'W') {
-                    ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW, chessBoardBuffer);
-                } else ChessMain.chessBoardThreatsB = mergeArrrays(ChessMain.chessBoardThreatsB, chessBoardBuffer);
-                } 
+                ChessMain.chessBoardThreats = mergeArrrays(ChessMain.chessBoardThreats, chessBoardBuffer);}
             } catch (Exception e) {}
     }
 

@@ -6,11 +6,11 @@ public class ChessPieces {
 	int king_moves_W = 8;
 	int king_moves_B = 8;
 
-	public static int kingXw = 4;
-	public static int kingYw = 7;
+	public static int kingXw = 0;
+	public static int kingYw = 0;
 
-	public static int kingXb = 3;
-	public static int kingYb = 5;
+	public static int kingXb = 0;
+	public static int kingYb = 0;
 
 	public void CreatePiece(char name, char color, int x, int y) {
 		ChessMain.chessBoard[y][x] = Character.toString(color) + Character.toString(name) + "_";

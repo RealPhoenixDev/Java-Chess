@@ -6,7 +6,7 @@ public class ChessMain {
 
 	public static String[][] chessBoard = new String[8][8];
 	public static String[][] chessBoardBufffer = new String[8][8];
-	public static Integer[][] chessBoardThreatsW = new Integer[8][8];
+	public static Integer[][] chessBoardThreats = new Integer[8][8];
 	public static Integer[][] chessBoardThreatsB = new Integer[8][8];
 
 	public static Integer[][] chessPsThreatsW = new Integer[8][8];
@@ -19,7 +19,7 @@ public class ChessMain {
 		for (int x = 0; x < 8; x++)
 			for (int y = 0; y < 8; y++) {
 				chessBoard[x][y] = "  _";
-				chessBoardThreatsW[x][y] = 0;
+				chessBoardThreats[x][y] = 0;
 				chessBoardThreatsB[x][y] = 0;
 				chessPsThreatsW[x][y] = 0;
 				chessPsThreatsB[x][y] = 0;
@@ -58,14 +58,12 @@ public class ChessMain {
 		for (int i = 0; i < 8; i++) {
 			if (UserControl.side == 'W') {
 				System.out.print(Arrays.toString(chessBoard[i]));
-				System.out.print(Arrays.toString(chessBoardThreatsW[i]));
-				System.out.print(Arrays.toString(chessBoardThreatsB[i]));
+				System.out.print(Arrays.toString(chessBoardThreats[i]));
 				System.out.print(Arrays.toString(chessPsThreatsW[i]));
 				System.out.println(Arrays.toString(chessPsThreatsB[i]));
 			} else {
 				System.out.print(Arrays.toString(chessBoard[7 - i]));
-				System.out.print(Arrays.toString(chessBoardThreatsW[7 - i]));
-				System.out.print(Arrays.toString(chessBoardThreatsB[7 - i]));
+				System.out.print(Arrays.toString(chessBoardThreats[7 - i]));
 				System.out.print(Arrays.toString(chessPsThreatsW[7 - i]));
 				System.out.println(Arrays.toString(chessPsThreatsB[7 - i]));
 			}
@@ -76,8 +74,7 @@ public class ChessMain {
 	public static void generateThreats() {
 		for (int x = 0; x < 8; x++) {
 			for (int y = 0; y < 8; y++) {
-				chessBoardThreatsW[x][y] = 0;
-				chessBoardThreatsB[x][y] = 0;
+				chessBoardThreats[x][y] = 0;
 				chessPsThreatsW[x][y] = 0;
 				chessPsThreatsB[x][y] = 0;
 			}

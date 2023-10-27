@@ -48,16 +48,13 @@ public class Pawn {
     public static void pawnThreats(char color, int x, int y) {
 		int modifier = (color == 'B') ? -1 : 1; // if black reverses vertical direction of the pawn, because black move down 
     	
-		Integer[] cellMove = (color == 'W') ? ChessMain.chessBoardThreatsW[y-1] : ChessMain.chessBoardThreatsB[y+1];
+		Integer[] cellMove = ChessMain.chessBoardThreats[y-1];
 
-			if (ChessThreats.isKingCell(color, x-1, y-(1*modifier)))
-				cellMove[x-1] += 1;
-			if (ChessThreats.isKingCell(color, x+1, y-(1*modifier))) 
-				cellMove[x+1] += 1;
-		
-				if (color == 'W') {
-					ChessMain.chessBoardThreatsW[y-1] = cellMove;
-				} else ChessMain.chessBoardThreatsB[y+1] = cellMove;
+		if (ChessThreats.isKingCell(color, x-1, y-(1*modifier)))
+			cellMove[x-1] += 1;
+		if (ChessThreats.isKingCell(color, x+1, y-(1*modifier))) 
+			cellMove[x+1] += 1;
+		ChessMain.chessBoardThreats[y-1] = cellMove;
     }
 		
     

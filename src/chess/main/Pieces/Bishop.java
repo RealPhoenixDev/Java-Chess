@@ -78,14 +78,7 @@ public class Bishop {
                         chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
                         if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
                             ChessMain.chessBoardThreats = mergeArrrays(ChessMain.chessBoardThreats, chessBoardBuffer);
-                            if (color == 'W') {
-                                ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
-                                        chessBoardBuffer);
-                            } else {
-                                ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
-                                        chessBoardBuffer);
-
-                            }
+                            ChessMain.chessPsThreats = mergeArrrays(ChessMain.chessPsThreats,chessBoardBuffer);
                             break;
                         }
                         skip--;
@@ -93,13 +86,7 @@ public class Bishop {
                         if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)){
                             cellDir++;
                             chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                            if (color == 'W') {
-                                ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
-                                        chessBoardBuffer);
-                            } else {
-                                ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
-                                        chessBoardBuffer);
-                            }
+                            ChessMain.chessPsThreats = mergeArrrays(ChessMain.chessPsThreats,chessBoardBuffer);
                             break;
                         }
                         skip--;

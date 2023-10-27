@@ -9,8 +9,7 @@ public class ChessMain {
 	public static Integer[][] chessBoardThreats = new Integer[8][8];
 	public static Integer[][] chessBoardThreatsB = new Integer[8][8];
 
-	public static Integer[][] chessPsThreatsW = new Integer[8][8];
-	public static Integer[][] chessPsThreatsB = new Integer[8][8];
+	public static Integer[][] chessPsThreats = new Integer[8][8];
 
 	public static void main(String[] args) {
 		ChessPieces chessPieces = new ChessPieces();
@@ -21,8 +20,7 @@ public class ChessMain {
 				chessBoard[x][y] = "  _";
 				chessBoardThreats[x][y] = 0;
 				chessBoardThreatsB[x][y] = 0;
-				chessPsThreatsW[x][y] = 0;
-				chessPsThreatsB[x][y] = 0;
+				chessPsThreats[x][y] = 0;
 			}
 		// Black pieces generation
 		// chessPieces.CreatePiece('R', 'B', 0, 0);
@@ -49,9 +47,9 @@ public class ChessMain {
 		// for (int p = 0; p < 8; p++)
 		// chessPieces.CreatePiece('P', 'W', p, 6);
 
-		chessPieces.CreatePiece('K', 'B', 7, 7);
-		chessPieces.CreatePiece('Q', 'W', 3, 3);
-		chessPieces.CreatePiece('R', 'B', 5, 5);
+		chessPieces.CreatePiece('K', 'B', 5, 7);
+		chessPieces.CreatePiece('Q', 'W', 5, 3);
+		chessPieces.CreatePiece('P', 'B', 5, 5);
 	}
 
 	public static void generateBoard() {
@@ -59,13 +57,11 @@ public class ChessMain {
 			if (UserControl.side == 'W') {
 				System.out.print(Arrays.toString(chessBoard[i]));
 				System.out.print(Arrays.toString(chessBoardThreats[i]));
-				System.out.print(Arrays.toString(chessPsThreatsW[i]));
-				System.out.println(Arrays.toString(chessPsThreatsB[i]));
+				System.out.println(Arrays.toString(chessPsThreats[i]));
 			} else {
 				System.out.print(Arrays.toString(chessBoard[7 - i]));
 				System.out.print(Arrays.toString(chessBoardThreats[7 - i]));
-				System.out.print(Arrays.toString(chessPsThreatsW[7 - i]));
-				System.out.println(Arrays.toString(chessPsThreatsB[7 - i]));
+				System.out.println(Arrays.toString(chessPsThreats[7 - i]));
 			}
 		}
 
@@ -75,8 +71,7 @@ public class ChessMain {
 		for (int x = 0; x < 8; x++) {
 			for (int y = 0; y < 8; y++) {
 				chessBoardThreats[x][y] = 0;
-				chessPsThreatsW[x][y] = 0;
-				chessPsThreatsB[x][y] = 0;
+				chessPsThreats[x][y] = 0;
 			}
 		}
 
@@ -84,7 +79,7 @@ public class ChessMain {
 			for (int y = 0; y < 8; y++) {
 				char color = chessBoard[y][x].charAt(0);
 				char name = chessBoard[y][x].charAt(1);
-				if (color != UserControl.move) {
+				if (color != UserControl.move && color != ' ') {
 					switch (name) {
 						case 'P':
 							chess.main.Pieces.Pawn.pawnThreats(color, x, y);

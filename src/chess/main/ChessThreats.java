@@ -52,12 +52,14 @@ public class ChessThreats {
 
 		if (color == 'W') {
 			
-			if (ChessPieces.kingXb-x ==0 && ChessPieces.kingYb-y==0) {
+			if (ChessPieces.kingXb==x && ChessPieces.kingYb==y) {
+				ChessPieces.kingWCheck = true;
 				return true;
 			} else
 				return false;
 		} else if (color == 'B') {
-			if (x - ChessPieces.kingXw == 0 && y - ChessPieces.kingYw==0) {
+			if (x==ChessPieces.kingXw && y==ChessPieces.kingYw) {
+				ChessPieces.kingBCheck = true;
 				return true;
 			} else
 				return false;

@@ -1,35 +1,52 @@
 package chess.main.Pieces;
 
 import chess.main.ChessMain;
+import chess.main.ChessPieces;
 import chess.main.ChessThreats;
 
 public class Pawn {
 	
-	
-	
-	
-
-	
     static boolean sw = true;
-	public static Integer[] movesW = {0,0,0,0,0,0,0,0};
+	public static Integer[] movesW = {0,0,0,0,0,0,0,0}; //TODO: this is a stupid idea and will break if a pawn from the other column goest in front on a pawn that didnt move yet
 	public static Integer[] movesB = {0,0,0,0,0,0,0,0};
 
     public static void pawnMoves(char color,int x, int y) {
 		int modifier = (color == 'B') ? -1 : 1; // if black reverses vertical direction of the pawn, because black move down 
 		sw = !sw;
+		boolean piecePSCheck = (ChessMain.chessPsThreats[y][x] > 0) ? true : false;
 		try {
-			String cellUp = ChessMain.chessBoard[y-(1*modifier)][x]; 
-			if (cellUp.charAt(0) == ' ') { //Checks if there is a space on a cell above
+			if (!piecePSCheck) {
+				boolean check = (color=='W') ? ChessPieces.kingWCheck : ChessPieces.kingBCheck;
+				String cellUp = ChessMain.chessBoard[y-(1*modifier)][x];
+				Integer cellUpThreat = ChessMain.chessBoardThreats[y-(1*modifier)][x];
+				System.out.println("test");
+				if ((!check && cellUp.charAt(0) == ' ') || (check && cellUpThreat > 0 && cellUp.charAt(0) == ' ')) { //Checks if there is a space on a cell above
+					System.out.println("test2");
+					cellUp = ((cellUp.charAt(2)=='_') ? cellUp.replace('_', '*') : cellUp.replace('*', '_')); // selects and unselects free cells
+					ChessMain.chessBoard[y-(1*modifier)][x] = cellUp; // returning gotten data to the cell
+
+					// The same but for 2 cell movement at first move
+					String cellUp2 = ChessMain.chessBoard[y-(2*modifier)][x];
+					Integer cellUpThreat2 = ChessMain.chessBoardThreats[y-(2*modifier)][x]; 
+					if (((!check && cellUp2.charAt(0) == ' ') || (check && cellUpThreat2 > 0 && cellUp2.charAt(0) == ' ')) && (color == 'W')? movesW[x] == 0 : movesB[x] == 0) {
+						cellUp2 = (cellUp2.charAt(2)=='_' ? cellUp2.replace('_', '*') : cellUp2.replace('*', '_'));
+						ChessMain.chessBoard[y-(2*modifier)][x] = cellUp2;}
+				}}
+			else{
+				String cellUp = ChessMain.chessBoard[y-(1*modifier)][x];
+				Integer cellUpPsThreat = ChessMain.chessPsThreats[y-(1*modifier)][x];
+				if (cellUpPsThreat > 0 && cellUp.charAt(0) == ' ') { //Checks if there is a space on a cell above
 				cellUp = ((cellUp.charAt(2)=='_') ? cellUp.replace('_', '*') : cellUp.replace('*', '_')); // selects and unselects free cells
 				ChessMain.chessBoard[y-(1*modifier)][x] = cellUp; // returning gotten data to the cell
-				
+
 				// The same but for 2 cell movement at first move
 				String cellUp2 = ChessMain.chessBoard[y-(2*modifier)][x];
-				if ((cellUp2.charAt(0) == ' ' || y == 6) && (color == 'W')? movesW[x] == 0 : movesB[x] == 0) {
+				Integer cellUpPsThreat2 = ChessMain.chessPsThreats[y-(2*modifier)][x];
+				if (cellUpPsThreat2 > 0 && (cellUp2.charAt(0)==' ') && ((color == 'W')? movesW[x] == 0 : movesB[x] == 0)) {
+					System.out.println(cellUp2);
 					cellUp2 = (cellUp2.charAt(2)=='_' ? cellUp2.replace('_', '*') : cellUp2.replace('*', '_'));
-					ChessMain.chessBoard[y-(2*modifier)][x] = cellUp2;
-				}
-			}
+					ChessMain.chessBoard[y-(2*modifier)][x] = cellUp2;}
+			}}
 		} catch (IndexOutOfBoundsException e) {}
 		
 		Integer[] sides = {-1,1};
@@ -56,6 +73,5 @@ public class Pawn {
 			cellMove[x+1] += 1;
 		ChessMain.chessBoardThreats[y-1] = cellMove;
     }
-		
     
 }

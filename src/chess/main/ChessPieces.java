@@ -12,6 +12,9 @@ public class ChessPieces {
 	public static int kingXb = 0;
 	public static int kingYb = 0;
 
+	public static boolean kingWCheck = false;
+	public static boolean kingBCheck = false;
+
 	public void CreatePiece(char name, char color, int x, int y) {
 		ChessMain.chessBoard[y][x] = Character.toString(color) + Character.toString(name) + "_";
 
@@ -54,7 +57,8 @@ public class ChessPieces {
 	}
 
 	public static void movePiece(char name, char color, int x, int y, int newx, int newy) {
-
+		ChessPieces.kingWCheck = false;
+		ChessPieces.kingBCheck = false;
 		if (name == 'P') {
 			chess.main.Pieces.Pawn.pawnMoves(color, x, y);
 			if (color == 'W')

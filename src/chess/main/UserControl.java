@@ -26,7 +26,7 @@ public class UserControl {
 		}
 		ChessMain.main(args);
 
-		char move = 'W';
+		move = 'W';
 		while (true) {
 			System.out.println("\n\n\n-------------------------------------");
 			ChessMain.generateThreats();
@@ -56,9 +56,7 @@ public class UserControl {
 
 				if (ChessMain.chessBoard[celly][cellx].charAt(0) == move) {
 					ChessPieces.GetPiecePath(cellx, celly);
-				} else {
-					throw new Exception("Error1!");
-				}
+				} else throw new Exception("Error1!");
 
 				System.out.println("Select cell to move or select the same cell to unselect it");
 				String next_move = input.nextLine();
@@ -88,11 +86,7 @@ public class UserControl {
 				continue;
 			}
 
-			if (move == 'W') {
-				move = 'B';
-			} else {
-				move = 'W';
-			}
+			move = (move == 'W') ? 'B' : 'W';
 		}
 	}
 }

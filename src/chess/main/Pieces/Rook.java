@@ -81,14 +81,7 @@ public class Rook {
                         chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
                         if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
                             ChessMain.chessBoardThreats = mergeArrrays(ChessMain.chessBoardThreats, chessBoardBuffer);
-                            if (color == 'W') {
-                                ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
-                                        chessBoardBuffer);
-                            } else {
-                                ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
-                                        chessBoardBuffer);
-
-                            }
+                            ChessMain.chessPsThreats = mergeArrrays(ChessMain.chessPsThreats,chessBoardBuffer);
                             break;
                         }
                         skip--;
@@ -96,13 +89,7 @@ public class Rook {
                         if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
                             cellDir++;
                             chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                            if (color == 'W') {
-                                ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
-                                        chessBoardBuffer);
-                            } else {
-                                ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
-                                        chessBoardBuffer);
-                            }
+                            ChessMain.chessPsThreats = mergeArrrays(ChessMain.chessPsThreats,chessBoardBuffer);
                             break;
                         }
                         skip--;
@@ -116,10 +103,7 @@ public class Rook {
             Integer cellDir = chessBoardBuffer[y + offsety][x + offsetx];
             if (ChessThreats.isKingCell(color, offsetx, offsety)) {
                 cellDir += 1;
-                if (color == 'W') {
-                    ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW, chessBoardBuffer);
-                } else
-                    ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB, chessBoardBuffer);
+                ChessMain.chessPsThreats = mergeArrrays(ChessMain.chessPsThreats, chessBoardBuffer);
                 System.out.println("King Found!3");
             }
         } catch (Exception e) {}

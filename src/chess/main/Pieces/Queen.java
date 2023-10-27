@@ -89,40 +89,38 @@ public class Queen {
                     cellDir++;
                     chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
                 } else {
-                    if (ChessMain.chessBoard[y + offsety][x + offsetx].charAt(0) != color) {
-                        if (skip == 2) {
+                    if (skip == 2) {
+                        cellDir++;
+                        chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
+                        if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
+                            if (color == 'W') {
+                                ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW,
+                                        chessBoardBuffer);
+                                ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
+                                        chessBoardBuffer);
+                            } else {
+                                ChessMain.chessBoardThreatsB = mergeArrrays(ChessMain.chessBoardThreatsB,
+                                        chessBoardBuffer);
+                                ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
+                                        chessBoardBuffer);
+
+                            }
+                        }
+                        skip--;
+                    } else if (skip == 1) {
+                        if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
                             cellDir++;
                             chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                            if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
-                                if (color == 'W') {
-                                    ChessMain.chessBoardThreatsW = mergeArrrays(ChessMain.chessBoardThreatsW,
-                                            chessBoardBuffer);
-                                    ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
-                                            chessBoardBuffer);
-                                } else {
-                                    ChessMain.chessBoardThreatsB = mergeArrrays(ChessMain.chessBoardThreatsB,
-                                            chessBoardBuffer);
-                                    ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
-                                            chessBoardBuffer);
-
-                                }
+                            if (color == 'W') {
+                                ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
+                                        chessBoardBuffer);
+                            } else {
+                                ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
+                                        chessBoardBuffer);
                             }
-                            skip--;
-                        } else if (skip == 1) {
-                            if (ChessThreats.isKingCell(color, x + offsetx, y + offsety)) {
-                                cellDir++;
-                                chessBoardBuffer[y + offsety][x + offsetx] = cellDir;
-                                if (color == 'W') {
-                                    ChessMain.chessPsThreatsW = mergeArrrays(ChessMain.chessPsThreatsW,
-                                            chessBoardBuffer);
-                                } else {
-                                    ChessMain.chessPsThreatsB = mergeArrrays(ChessMain.chessPsThreatsB,
-                                            chessBoardBuffer);
-                                }
-                            }
-                            skip--;
                         }
-                    } else skip = 0;
+                        skip--;
+                    }
                 }
                 offsetx += Math.signum(offsetx);
                 offsety += Math.signum(offsety);

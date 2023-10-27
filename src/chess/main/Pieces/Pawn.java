@@ -22,6 +22,7 @@ public class Pawn {
 			if (cellUp.charAt(0) == ' ') { //Checks if there is a space on a cell above
 				cellUp = ((cellUp.charAt(2)=='_') ? cellUp.replace('_', '*') : cellUp.replace('*', '_')); // selects and unselects free cells
 				ChessMain.chessBoard[y-(1*modifier)][x] = cellUp; // returning gotten data to the cell
+				
 				// The same but for 2 cell movement at first move
 				String cellUp2 = ChessMain.chessBoard[y-(2*modifier)][x];
 				if ((cellUp2.charAt(0) == ' ' || y == 6) && (color == 'W')? movesW[x] == 0 : movesB[x] == 0) {

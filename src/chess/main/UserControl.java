@@ -37,12 +37,14 @@ public class UserControl {
 			} else
 				System.out.println("Black Moves!");
 
+			
 			try {
 				System.out.println("Select Piece");
 				String cell = input.nextLine();
 
 				System.out.println("\n\n\n-------------------------------------");
 
+				// converts entered coordinates for upside down board when black moves
 				if (side == 'B') {
 					int cell_1 = Character.getNumericValue(cell.charAt(0));
 					int cell_2 = cell.charAt(1) - '0';

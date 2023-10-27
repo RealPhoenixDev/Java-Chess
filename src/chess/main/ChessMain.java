@@ -87,18 +87,27 @@ public class ChessMain {
 			for (int y = 0; y < 8; y++) {
 				char color = chessBoard[y][x].charAt(0);
 				char name = chessBoard[y][x].charAt(1);
-				if (name == 'P') {
-					chess.main.Pieces.Pawn.pawnThreats(color, x, y);
-				} else if (name == 'R') {
-					chess.main.Pieces.Rook.rookThreats(color, x, y);
-				} else if (name == 'B') {
-					chess.main.Pieces.Bishop.bishopThreats(color, x, y);
-				} else if (name == 'N') {
-					chess.main.Pieces.Knight.knightThreats(color, x, y);
-				} else if (name == 'Q') {
-					chess.main.Pieces.Queen.queenThreats(color, x, y);
-				} else if (name == 'K') {
-					ChessThreats.KingThreats(color, x, y, false);
+				if (color != UserControl.move) {
+					switch (name) {
+						case 'P':
+							chess.main.Pieces.Pawn.pawnThreats(color, x, y);
+							break;
+						case 'R':
+							chess.main.Pieces.Rook.rookThreats(color, x, y);
+							break;
+						case 'B':
+							chess.main.Pieces.Bishop.bishopThreats(color, x, y);
+							break;
+						case 'N':
+							chess.main.Pieces.Knight.knightThreats(color, x, y);
+							break;
+						case 'Q':
+							chess.main.Pieces.Queen.queenThreats(color, x, y);
+							break;
+						case 'K':
+							ChessThreats.KingThreats(color, x, y, true);
+							break;
+					}
 				}
 			}
 		}

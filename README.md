@@ -1,3 +1,5 @@
 # Java Chess
- A Simple Chess in Java
-Warning: this is a very bad code and incorrent execution and should not be done in the way I did this is old code please just leave the page and save yourself the precious time you could spend with your familty or doing something productive
+ A Simple Chess game in Java
+Warning: this is a very bad code and incorrent execution and should not be done in the way I did.
+
+Why I havent removed the repository? Its a part of my learning and I want to keep it to see my progress in the future.
